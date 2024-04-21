@@ -6,9 +6,9 @@ using namespace std;
 int main()
 {
     Roll myObj;
-
     myObj.setName("Lebron James");
-    cout << myObj.getName() << endl;
+
+    myObj.display();
     
     return 0;
 }
