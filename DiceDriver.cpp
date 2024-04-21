@@ -9,6 +9,10 @@ int main()
     myObj.setName("Lebron James");
 
     myObj.display();
+
+    myObj.rollDice();
+
+    myObj.display();
     
     return 0;
 }
