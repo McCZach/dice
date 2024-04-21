@@ -15,6 +15,7 @@ class Roll
         ~Roll();
         void setName(const std::string &);
         std::string getName() const;
+        void rollDice();
         void display() const;
 
     private:
@@ -29,12 +30,10 @@ Roll::Roll()
 
     rollList.resize(LENGTH);
 
-    int count = 4;
     for (int i = 0; i < LENGTH; i++)
     {
-        rollList[i].first = count;
+        rollList[i].first = 0;
         rollList[i].second = 0;
-        count += 2;
     }
 }
 

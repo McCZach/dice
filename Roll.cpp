@@ -1,14 +1,27 @@
 #include "Roll.h"
 #include <iostream>
+#include <random>
+using namespace std;
+
+void Roll::rollDice()
+{
+    random_device rd;
+    auto random = default_random_engine{rd()}; 
+      
+
+}
 
 void Roll::display() const
 {
-    std::cout << "Name: " << name << std::endl;
+    cout << "Name: " << name << endl;
 
-    std::cout << "Rolls: " << std::endl;
+    int count = 4;
+    cout << "Rolls: " << endl;
     for (int i = 0; i < LENGTH; i++)
     {
-        std::cout << "- d" << rollList[i].first << ": " 
-                  << rollList[i].second << std::endl;
+        cout << "- d" << count << ": " << rollList[i].first << ", " 
+             << rollList[i].second << endl;
+
+        count += 2;
     }
 }
