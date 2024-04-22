@@ -13,6 +13,8 @@ int main()
     myObj.rollDice();
 
     myObj.display();
+
+    cout << "The roll's score is: " << myObj.getScore() << endl;
     
     return 0;
 }

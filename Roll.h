@@ -17,10 +17,14 @@ class Roll
         std::string getName() const;
         void rollDice();
         void display() const;
+        double getScore() const;
 
     private:
         std::string name;
         std::vector<std::pair<int,int>> rollList;
+
+        double scoreRoll(const int &) const;
+
 };
 
 inline

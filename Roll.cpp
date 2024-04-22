@@ -6,18 +6,16 @@ using namespace std;
 void Roll::rollDice()
 {
     char input;
-    int index, numDie, rollSum;
-    
-    index = numDie = rollSum = 0;
-
-    int dieType = 4;
-
     bool done = false;
+
+    int index, numDie, rollSum;
+    index = numDie = rollSum = 0;
 
     random_device rd;
     auto random = default_random_engine{rd()};
  
-    while (!done)
+    int dieType = 4;
+    while ((!done) && (dieType <= 12))
     {
         uniform_int_distribution<> dist(1, dieType);    
 
@@ -25,7 +23,6 @@ void Roll::rollDice()
         cout << "Would you like to roll d" << dieType << "(s)? (Y/N): ";
         cin >> input;
         input = toupper(input);
-        cout << endl << endl;
 
         while ((input != 'Y') && (input != 'N'))
         {
@@ -51,8 +48,20 @@ void Roll::rollDice()
 
             for (int i = 1; i <= numDie; i++)
             {
-                rollSum += dist(random);
+                int dieRoll = dist(random);
+
+                if (i != numDie)
+                {
+                    cout << dieRoll << ", ";
+                }
+                else
+                {
+                    cout << dieRoll << endl;
+                }
+
+                rollSum += dieRoll;
             }
+
             rollList[index].second = rollSum;
         }
     
@@ -80,9 +89,8 @@ void Roll::rollDice()
             index += 1;
             dieType += 2;
         }
-    }
-      
 
+    }
 }
 
 void Roll::display() const
@@ -99,4 +107,32 @@ void Roll::display() const
         dieType += 2;
     }
     cout << endl;
+}
+
+double Roll::scoreRoll(const int & i) const
+{
+    int dieType = ((i + 1) * 2) + 2;
+
+    double maximum = rollList[i].first * dieType;
+
+    return (rollList[i].second / maximum);
+}
+
+double Roll::getScore() const
+{
+    double sum;
+    int count = 0;
+
+    for (int i = 0; i < LENGTH; i++)
+    {
+        if (rollList[i].first != 0)
+        {
+            sum += scoreRoll(i);
+            count += 1;
+        }
+    }
+
+    count = LENGTH - count;
+
+    return (sum / count);
 }
