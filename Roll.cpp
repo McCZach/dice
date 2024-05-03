@@ -1,5 +1,6 @@
 #include "Roll.h"
 #include <iostream>
+#include <iomanip>
 #include <random>
 using namespace std;
 
@@ -101,21 +102,13 @@ void Roll::display() const
     cout << "Rolls: " << endl;
     for (int i = 0; i < LENGTH; i++)
     {
-        cout << "- d" << dieType << ": " << rollList[i].first << ", " 
-             << rollList[i].second << endl;
+        cout << setw(3) << left << "- d" << setw(2) << left << dieType << ": " 
+             << setw(2) << left << rollList[i].first << " | " 
+             << setw(2) << left << rollList[i].second << endl;
 
         dieType += 2;
     }
     cout << endl;
-}
-
-double Roll::scoreRoll(const int & i) const
-{
-    int dieType = ((i + 1) * 2) + 2;
-
-    double maximum = rollList[i].first * dieType;
-
-    return (rollList[i].second / maximum);
 }
 
 double Roll::getScore() const
@@ -132,7 +125,14 @@ double Roll::getScore() const
         }
     }
 
-    count = LENGTH - count;
+    return sum;
+}
 
-    return (sum / count);
+double Roll::scoreRoll(const int & i) const
+{
+    int dieType = ((i + 1) * 2) + 2;
+
+    double maximum = rollList[i].first * dieType;
+
+    return (rollList[i].second / maximum);
 }
